@@ -1,12 +1,12 @@
 import unittest
 import time
+from TestRunner import HTMLTestRunner
+from TestRunner import SMTP
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from seleniumpagefactory.Pagefactory import PageFactory
 from selenium.webdriver.support import expected_conditions as EC
-from TestRunner import HTMLTestRunner
-from TestRunner import SMTP
 
 class Homepage(PageFactory):
     def __init__(self, driver):
@@ -67,9 +67,9 @@ def Suite():
     return suiteTest
 
 if __name__ == "__main__": 
-    with open('./report.html', 'w', encoding="utf-8") as f: 
+    with open('./report.html', 'wb') as f: 
         # open have two parameters, the first is the file name, the second is the mode. 'w' means write, 'r' means read, 'a' means append, 'b' means binary
-        runner = HTMLTestRunner.HTMLTestRunner( # type: ignore
+        runner = HTMLTestRunner( # type: ignore
             stream=f, # this means the test result will be written to the file
             title='TIERIV_TWITCH_TEST_AUTOMATION', # en: test report
             description='Login and Register button test') # en: test report
