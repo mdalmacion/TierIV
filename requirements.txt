@@ -1,0 +1,7 @@
+[packages]
+unittest = "*"
+selenium-page-factory = "*"
+
+[requires]
+python_version = "3.11"
+
