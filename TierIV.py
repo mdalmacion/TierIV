@@ -3,6 +3,7 @@ import time
 from TestRunner import HTMLTestRunner
 from TestRunner import SMTP
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from seleniumpagefactory.Pagefactory import PageFactory
@@ -36,9 +37,12 @@ class Homepage(PageFactory):
 
 class TestCases(unittest.TestCase):
     success_keyword = "Join Twitch today"
-
+    start_url = "https://twitch.tv"
+    
     def test_new_user(self):
-        driver = webdriver.Chrome()
+        chrome_options = Options()
+        chrome_options.add_argument("--headless=new") # for Chrome >= 109
+        driver = webdriver.Chrome(options=chrome_options)
         driver.get("https://twitch.tv")
         wait = WebDriverWait(driver, 10)
         pgDriver = Homepage(driver)
@@ -49,7 +53,9 @@ class TestCases(unittest.TestCase):
         driver.close()
 
     def test_Login(self):
-        driver = webdriver.Chrome()
+        chrome_options = Options()
+        chrome_options.add_argument("--headless=new") # for Chrome >= 109
+        driver = webdriver.Chrome(options=chrome_options)
         driver.get("https://twitch.tv")
         wait = WebDriverWait(driver, 10)
         pgDriver = Homepage(driver)
