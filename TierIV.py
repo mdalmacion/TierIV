@@ -42,9 +42,10 @@ class TestCases(unittest.TestCase):
     def test_new_user(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless=new") # for Chrome >= 109
+        chrome_options.add_argument("--incognito");
         driver = webdriver.Chrome(options=chrome_options)
         driver.get("https://twitch.tv")
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 60)
         pgDriver = Homepage(driver)
         pgDriver.click_login()
         pgDriver.click_new_user()
@@ -55,9 +56,10 @@ class TestCases(unittest.TestCase):
     def test_Login(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless=new") # for Chrome >= 109
+        chrome_options.add_argument("--incognito");
         driver = webdriver.Chrome(options=chrome_options)
         driver.get("https://twitch.tv")
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 60)
         pgDriver = Homepage(driver)
         pgDriver.click_sign_up()
         element = wait.until(EC.element_to_be_clickable((By.ID, "signup-username")))
